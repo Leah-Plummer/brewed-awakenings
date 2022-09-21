@@ -1,5 +1,26 @@
 import { getProducts } from "./database.js"
 
+//adding a click event listener that presents an alert box showing the price of a product when it is clicked by the user.
+
+document.addEventListener("click", (clickEvent) => {
+    const productClicked = clickEvent.target
+
+    if (productClicked.id.startsWith("product")) {
+
+        const [, productId] = productClicked.id.split("--")
+
+
+        for (const product of products) {
+            if (product.id === parseInt(productId)) {
+                window.alert(`$${product.price}`)
+            }
+        }
+
+
+    }
+
+})
+
 const products = getProducts()
 
 export const Products = () => {
@@ -13,4 +34,5 @@ export const Products = () => {
 
     return html
 }
+
 
